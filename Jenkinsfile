@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "Heroku"
+        IMAGE_NAME = "heroku"
         IMAGE_TAG = "latest"
         DOCKER_USER = "dulcinee"
         DOCKER_PASS = 'Docker-hub'
