@@ -32,11 +32,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
 
         stage('Run Html Tests') {
             steps {
