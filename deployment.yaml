@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: heroku
+  namespace: jenkins
 spec:
   replicas: 1
   selector:
@@ -16,17 +17,20 @@ spec:
         - name: heroku
           image: dulcinee/heroku
           ports:
-            - containerPort: 3000
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: herokou-service
+  namespace: jenkins
 spec:
   selector:
     app: heroku
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 80
   type: NodePort
