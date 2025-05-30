@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: herokou
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: herokou
+  template:
+    metadata:
+      labels:
+        app: herokou
+    spec:
+      containers:
+        - name: herokou
+          image: dulcinee/horekou
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: herokou-service
+spec:
+  selector:
+    app: herokou
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: NodePort
